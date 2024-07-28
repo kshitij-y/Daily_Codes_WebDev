@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUM</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #container {
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            width: 300px;
+        }
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        #b1 {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        #b1:hover {
+            background-color: #45a049;
+        }
+        #ans {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        p {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        async function calInterest() {
+            const a = document.getElementById("num1").value;
+            const b = document.getElementById("num2").value;
+            const c = document.getElementById("num3").value;
+            const response = await fetch("http://localhost:3000/calInterest?a=" + a + "&b=" + b + "&c=" + c);
+            const ans = await response.text();
+            document.getElementById("ans").innerHTML = "Your Interest is: "+ans;
+        }
+    </script>
+    <div id="container">
+        <p>Simple Interest</p>
+        <input id="num1" type="text" placeholder="Enter Amount"><br><br>
+        <input id="num2" type="text" placeholder="Enter rate"><br><br>
+        <input id="num3" type="text" placeholder="Enter time"><br><br>
+        <button id="b1" onclick="calInterest()">Calculate Interest</button> <br><br>
+        <div id="ans"></div>
+    </div>
+</body>
+</html>
