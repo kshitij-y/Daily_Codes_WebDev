@@ -7,7 +7,8 @@ export function CreateTodo(props){
     return <div>
         <input style={{
             padding: 10,
-            margin: 10
+            margin: 10,
+            width: 500
 
         }} id="title" type="text" placeholder="title" onChange={function(e){
             setTitle(e.target.value)
@@ -15,7 +16,8 @@ export function CreateTodo(props){
 
         <input style={{
             padding: 10,
-            margin: 10
+            margin: 10,
+            width: 500
 
         }} id="desc" type="text" placeholder="description" onChange={function(e){
             setDescription(e.target.value)
@@ -23,7 +25,8 @@ export function CreateTodo(props){
 
         <button style={{
             padding: 10,
-            margin: 10
+            margin: 10,
+            width: 500
         }} onClick={() =>{
             fetch("http://localhost:3000/todo",{
                 method: "POST",
