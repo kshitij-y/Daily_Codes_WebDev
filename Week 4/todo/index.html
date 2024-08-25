@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        #container {
+            margin-top: 20px;
+        }
+        .todo-item {
+            background-color: white;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .todo-item.done {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+        .todo-item > div {
+            margin-bottom: 5px;
+        }
+    </style>
+    <script>
+        let globalID = 1;
+        function createChild(title, desc, id) {
+            const child = document.createElement("div");
+            child.className = "todo-item";
+
+            const firstGC = document.createElement("div");
+            firstGC.innerHTML = `<strong>${title}</strong>`;
+
+            const secGC = document.createElement("div");
+            secGC.innerHTML = desc;
+
+            const thirdGC = document.createElement("button");
+            thirdGC.innerHTML = "Mark as done";
+            thirdGC.setAttribute("onclick", `markAsDone(${id})`);
+            thirdGC.setAttribute("id", id);
+
+            child.appendChild(firstGC);
+            child.appendChild(secGC);
+            child.appendChild(thirdGC);
+            return child;
+        }
+        function addtodo() {
+            const title = document.getElementById("title").value;
+            const desc = document.getElementById("descriptiion").value;
+            const parent = document.getElementById("container");
+
+            if (title && desc) {
+                parent.appendChild(createChild(title, desc, globalID++));
+                document.getElementById("title").value = '';
+                document.getElementById("descriptiion").value = '';
+            } else {
+                alert("Please enter both title and description.");
+            }
+        }
+
+        function markAsDone(id){
+            const button = document.getElementById(id);
+            button.innerHTML = "done";
+            button.disabled = true;
+            button.parentElement.classList.add("done");
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <input id="title" type="text" placeholder="Title"><br>
+        <input id="descriptiion" type="text" placeholder="Description"><br>
+        <button onclick="addtodo()">Add To-Do</button>
+    </div>
+    <div id="container"></div>
+</body>
+</html>
